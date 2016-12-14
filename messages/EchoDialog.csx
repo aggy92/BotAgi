@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System.Collections.Generic;
 
 // For more information about this template visit http://aka.ms/azurebots-csharp-basic
 [Serializable]
