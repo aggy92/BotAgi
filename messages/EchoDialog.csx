@@ -79,23 +79,20 @@ public class EchoDialog : IDialog<object>
                 await context.PostAsync("Zmalal urus?");
             }
             else if (didntAskAboutPenisSize)
-            {
-               
-                
-                if (text.Equals("zmalal")) {
+            {                  
+                if (text.Contains("zmalal")) {
                     await context.PostAsync("Przykro mi :(");
                     didntAskAboutPenisSize = false;
-                } else if(text.Equals("urus"))
+                } else if(text.Contains("urus"))
                 {
                     await context.PostAsync("GRATULACJE!");
                     didntAskAboutPenisSize = false;
-                } else if(text.Equals("moglby zmalec"))
+                } else if(text.Contains("zmalec") || text.Contains("zmaleæ"))
                 {
                     await context.PostAsync("Pytam o pindola, nie maæka...");
                     didntAskAboutPenisSize = false;
                 }
-                
-                
+                 
             } else
             {
                 await context.PostAsync("Milo sie gadalo, na razie!");
