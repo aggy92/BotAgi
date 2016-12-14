@@ -42,7 +42,7 @@ public class EchoDialog : IDialog<object>
         }
         else
         {
-            ResponseManager r = new ResponseManager();
+            
             String nadawca = message.From.Name;
             if (nadawca.Equals("Kamil Augustyn")) {
                 await context.PostAsync($"{this.count++}: Augustyn Kamil sie poplamil");
