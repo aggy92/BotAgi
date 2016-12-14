@@ -44,15 +44,15 @@ public class EchoDialog : IDialog<object>
         {
             String nadawca = message.From.Name;
             if (nadawca.Equals("Kamil Augustyn")) {
-                await context.PostAsync($"{this.count++}: Augustyn Kamil siê poplami³");
+                await context.PostAsync($"{this.count++}: Augustyn Kamil sie poplamil");
             } else if(nadawca.Equals("Krzystof Krawczyk")) {
                 await context.PostAsync($"{this.count++}: Krzysztof Krawczyk to sprzewaczyk!");
             } else if(nadawca.Equals("Filip Biedrzycki")) {
-                await context.PostAsync($"{this.count++}: Filip Biedrzycki ma du¿e cycki!");
+                await context.PostAsync($"{this.count++}: Filip Biedrzycki ma duze cycki!");
             }
 
             ThreadStaticAttribute.sleep(3000);
-            await context.PostAsync($"{this.count++}: No dobra ¿artuje, czego chcesz?");
+            await context.PostAsync($"{this.count++}: No dobra zartuje, czego chcesz?");
             context.Wait(MessageReceivedAsync);
         }
     }
