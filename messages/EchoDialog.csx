@@ -8,7 +8,7 @@ using Microsoft.Bot.Connector;
 public class EchoDialog : IDialog<object>
 {
     protected int count = 1;
-    String[] clients = new String[10]();
+    String[] clients = new String[10] {"user", "user", "user", "user", "user", "user", "user", "user", "user", "user"};
     Boolean didntAskAboutPenisSize = true;
 
     public Task StartAsync(IDialogContext context)
@@ -75,13 +75,12 @@ public class EchoDialog : IDialog<object>
                 }
                 this.clients[count] = nadawca;
                 didntAskAboutPenisSize = true;
+                await context.PostAsync("Co tam u kolegi?");
+                await context.PostAsync("Zmalal urus?");
             } else
             {
                 if (didntAskAboutPenisSize)
                 {
-                    await context.PostAsync("Co tam u kolegi?");
-                    await context.PostAsync("Zmalal urus?");
-
                     if (text.Equals("zmalal")) {
                         await context.PostAsync("Przykro mi :(");
                         didntAskAboutPenisSize = false;
@@ -97,11 +96,6 @@ public class EchoDialog : IDialog<object>
                 
                 }
             }
-
-            System.Timers.Timer timer = new System.Timers.Timer(10000);
-            timer.Start();
-            timer.Stop();
-            
             context.Wait(MessageReceivedAsync);
         }
     }
