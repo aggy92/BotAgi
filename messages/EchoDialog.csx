@@ -82,7 +82,7 @@ public class EchoDialog : IDialog<object>
                     await context.PostAsync("Co tam u kolegi?");
                     await context.PostAsync("Zmalal urus?");
 
-                    if (text.Equals("zmalal") {
+                    if (text.Equals("zmalal")) {
                         await context.PostAsync("Przykro mi :(");
                         didntAskAboutPenisSize = false;
                     } else if(text.Equals("urus"))
