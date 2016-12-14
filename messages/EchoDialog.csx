@@ -51,7 +51,7 @@ public class EchoDialog : IDialog<object>
                 await context.PostAsync($"{this.count++}: Filip Biedrzycki ma duze cycki!");
             }
 
-            ThreadStaticAttribute.sleep(3000);
+            Thread.Sleep(3000);
             await context.PostAsync($"{this.count++}: No dobra zartuje, czego chcesz?");
             context.Wait(MessageReceivedAsync);
         }
