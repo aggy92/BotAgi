@@ -8,6 +8,8 @@ using Microsoft.Bot.Connector;
 public class EchoDialog : IDialog<object>
 {
     protected int count = 1;
+    String[] clients = new String[10]();
+    Boolean didntAskAboutPenisSize = true;
 
     public Task StartAsync(IDialogContext context)
     {
@@ -44,19 +46,62 @@ public class EchoDialog : IDialog<object>
         {
             
             String nadawca = message.From.Name;
+            String text = message.Text;
+            Boolean alreadyWritten = false;
+            for (int i = 0; i < 10; i++) {
+                if(clients[i].Equals(nadawca))
+                {
+                    alreadyWritten = true;
+                    break;
+                }
+            }
             
-            if (nadawca.Equals("Kamil Augustyn")) {
-                await context.PostAsync($"{this.count++}: Augustyn Kamil sie poplamil");
-            } else if(nadawca.Equals("Krzystof Krawczyk")) {
-                await context.PostAsync($"{this.count++}: Krzysztof Krawczyk to sprzewaczyk!");
-            } else if(nadawca.Equals("Filip Biedrzycki")) {
-                await context.PostAsync($"21:37: Filip Biedrzycki ma duze cycki!");
+            if (!alreadyWritten)
+            {
+                if (nadawca.Equals("Kamil Augustyn"))
+                {
+                    await context.PostAsync("Augustyn Kamil sie poplamil");
+                    this.count++;
+                }
+                else if (nadawca.Equals("Krzystof Krawczyk"))
+                {
+                    await context.PostAsync("Krzysztof Krawczyk to sprzedawczyk!");
+                    this.count++;
+                }
+                else if (nadawca.Equals("Filip Biedrzycki"))
+                {
+                    await context.PostAsync("21:37: Filip Biedrzycki ma duze cycki!");
+                    this.count++;
+                }
+                this.clients[count] = nadawca;
+                didntAskAboutPenisSize = true;
+            } else
+            {
+                if (didntAskAboutPenisSize)
+                {
+                    await context.PostAsync("Co tam u kolegi?");
+                    await context.PostAsync("Zmalal urus?");
+
+                    if (text.Equals("zmalal") {
+                        await context.PostAsync("Przykro mi :(");
+                        didntAskAboutPenisSize = false;
+                    } else if(text.Equals("urus"))
+                    {
+                        await context.PostAsync("GRATULACJE!");
+                        didntAskAboutPenisSize = false;
+                    } else if(text.Equals("moglby zmalec"))
+                    {
+                        await context.PostAsync("Pindol, nie bêben...");
+                        didntAskAboutPenisSize = false;
+                    }
+                
+                }
             }
 
             System.Timers.Timer timer = new System.Timers.Timer(10000);
             timer.Start();
             timer.Stop();
-            await context.PostAsync("dupecipe");
+            
             context.Wait(MessageReceivedAsync);
         }
     }
