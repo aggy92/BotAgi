@@ -77,24 +77,28 @@ public class EchoDialog : IDialog<object>
                 didntAskAboutPenisSize = true;
                 await context.PostAsync("Co tam u kolegi?");
                 await context.PostAsync("Zmalal urus?");
+            }
+            else if (didntAskAboutPenisSize)
+            {
+               
+                
+                if (text.Equals("zmalal")) {
+                    await context.PostAsync("Przykro mi :(");
+                    didntAskAboutPenisSize = false;
+                } else if(text.Equals("urus"))
+                {
+                    await context.PostAsync("GRATULACJE!");
+                    didntAskAboutPenisSize = false;
+                } else if(text.Equals("moglby zmalec"))
+                {
+                    await context.PostAsync("Pytam o pindola, nie maæka...");
+                    didntAskAboutPenisSize = false;
+                }
+                
+                
             } else
             {
-                if (didntAskAboutPenisSize)
-                {
-                    if (text.Equals("zmalal")) {
-                        await context.PostAsync("Przykro mi :(");
-                        didntAskAboutPenisSize = false;
-                    } else if(text.Equals("urus"))
-                    {
-                        await context.PostAsync("GRATULACJE!");
-                        didntAskAboutPenisSize = false;
-                    } else if(text.Equals("moglby zmalec"))
-                    {
-                        await context.PostAsync("Pindol, nie bêben...");
-                        didntAskAboutPenisSize = false;
-                    }
-                
-                }
+                await context.PostAsync("Milo sie gadalo, na razie!");
             }
             context.Wait(MessageReceivedAsync);
         }
