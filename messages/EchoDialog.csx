@@ -44,18 +44,19 @@ public class EchoDialog : IDialog<object>
         {
             
             String nadawca = message.From.Name;
+            
             if (nadawca.Equals("Kamil Augustyn")) {
                 await context.PostAsync($"{this.count++}: Augustyn Kamil sie poplamil");
             } else if(nadawca.Equals("Krzystof Krawczyk")) {
                 await context.PostAsync($"{this.count++}: Krzysztof Krawczyk to sprzewaczyk!");
             } else if(nadawca.Equals("Filip Biedrzycki")) {
-                await context.PostAsync($"{this.count++}: Filip Biedrzycki ma duze cycki!");
+                await context.PostAsync($"21:37: Filip Biedrzycki ma duze cycki!");
             }
 
             System.Timers.Timer timer = new System.Timers.Timer(10000);
             timer.Start();
             timer.Stop();
-            await context.PostAsync($"{this.count++}: No dobra ¿artuje, czego chcesz?");
+            await context.PostAsync("dupecipe");
             context.Wait(MessageReceivedAsync);
         }
     }
