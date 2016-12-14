@@ -10,6 +10,7 @@ public class EchoDialog : IDialog<object>
     protected int count = 1;
     String[] clients = new String[10] {"user", "user", "user", "user", "user", "user", "user", "user", "user", "user"};
     Boolean didntAskAboutPenisSize = true;
+    Dictionary<String, int> goodbyeMap = new Dictionary<String, int>();
 
     public Task StartAsync(IDialogContext context)
     {
@@ -91,11 +92,22 @@ public class EchoDialog : IDialog<object>
                 {
                     await context.PostAsync("Pytam o pindola, nie maÊka...");
                     didntAskAboutPenisSize = false;
+
                 }
+
+                goodbyeMap.Add(nadawca, 0);
                  
             } else
-            {
-                await context.PostAsync("Milo sie gadalo, na razie!");
+            {   
+                if(goodbyeMap[nadawca] >= 2)
+                {
+                    await context.PostAsync("Weü spierdalaj :(");
+                } else
+                {
+                    await context.PostAsync("Milo sie gadalo, na razie!");
+                    goodbyeMap[nadawca] = goodbyeMap[nadawca]++;
+                }
+                
             }
             context.Wait(MessageReceivedAsync);
         }
